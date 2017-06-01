@@ -4,7 +4,6 @@
   "description": "Cava's insult of the day",
   "main": "build/app.js",
   "dependencies": {
-    "moment": "^2.18.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
