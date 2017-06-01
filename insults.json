@@ -1,0 +1,12 @@
+{
+  "insults": {
+    "default": [
+      "idiota",
+      "idiot",
+      "baka"
+    ],
+    "special": {
+      "03/06/2017": "idiota del 3 de junio"
+    }
+  }
+}
