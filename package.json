@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Cava's insult of the day",
   "main": "build/app.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
