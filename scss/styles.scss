@@ -1,0 +1,88 @@
+$primary-color: rgba(210, 77, 87, 1);
+$primary-color--transparent: rgba(210, 77, 87, 0.58);
+$background-color: #22313F;
+
+$secondary-color: $background-color;
+$tertiary-color: #E9D460;
+
+@mixin carbon-fibre-bg {
+	background:
+	radial-gradient(black 15%, transparent 16%) 0 0,
+	radial-gradient(black 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color: $background-color;
+	background-size:16px 16px;
+}
+
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+	font-family: 'Fauna One', sans-serif;
+
+	&__header {
+		background-color: $primary-color--transparent;
+		padding: 2rem 1rem;
+
+		font-family: 'Monoton', sans-serif;
+		font-size: 2.5rem;
+		color: $secondary-color;
+
+		&::before {
+			content: '#';
+		}
+
+		&:hover {
+			background-color: $primary-color;
+
+			&::before {
+				color: $tertiary-color;
+			}
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: unset;
+		font-size: inherit;
+		display: inline;
+	}
+
+	&__content {
+		@include carbon-fibre-bg
+
+		flex: 1;
+		color: $tertiary-color;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+		background-color: $primary-color--transparent;
+		padding: 1rem .5rem;
+
+		font-size: .8rem;
+
+		&:hover {
+			background-color: $primary-color;
+		}
+	}
+
+	&__insult {
+		text-align: center;
+		font-size: 2rem;
+	}
+
+	&__time {
+		text-transform: uppercase;
+		color: white;
+		padding: 0 .5rem;
+	}
+}
