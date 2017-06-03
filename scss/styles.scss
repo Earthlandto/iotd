@@ -16,6 +16,10 @@ $button-background: rgba(14, 14, 14, 0.58);
 	background-size:16px 16px;
 }
 
+@keyframes pound {
+	to { transform: scale(1.5); }
+}
+
 .site {
 	display: flex;
 	flex-direction: column;
@@ -87,6 +91,16 @@ $button-background: rgba(14, 14, 14, 0.58);
 		text-transform: uppercase;
 		color: white;
 		padding: 0 .5rem;
+	}
+
+	.site__icon {
+		height: 4rem;
+		border-radius: 100px;
+		float: right;
+
+		&:hover {
+			animation: pound .4s infinite alternate;
+		}
 	}
 }
 
