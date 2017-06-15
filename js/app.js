@@ -1,12 +1,12 @@
 (function() {
-	var MILLISECOND_PER_DAY = 8.64e7;
-	var NUM_EXTRA_INSULTS = 10;
-	var insults = {};
+	const MILLISECOND_PER_DAY = 8.64e7;
+	const NUM_EXTRA_INSULTS = 5;
+	let insults = {};
 
   $.getJSON('insults.json', function(data) {
     insults = data.insults;
 
-    var selected = getInsult(insults.default, insults.special);
+    const selected = getInsult(insults.default, insults.special);
 
     $('.js-insult-text').text(selected);
   });
@@ -14,11 +14,10 @@
   $('.js-time').text(moment().format('LL'));
 
   $('.js-extra-button').click(function () {
-  	var $extraInsults = '';
-  	var i = 0;
-  	var extraInsult = '';
+  	let $extraInsults = '';
+    let extraInsult = '';
 
-  	for (; i < NUM_EXTRA_INSULTS; i++) {
+  	for (let i = 0; i < NUM_EXTRA_INSULTS; i++) {
   		// extraList.push(insults.default[getRandomInt(0, insults.default.length)]);
   		extraInsult = insults.default[getRandomInt(0, insults.default.length)];
   		$extraInsults += `<li class="extra-list__item">${extraInsult}</li>`;
@@ -34,15 +33,15 @@
    */
   function getInsult(defaults, specials) {
 
-    var currentDateStr = moment().format('DD/MM/YYYY');
+    const currentDateStr = moment().format('DD/MM/YYYY');
+    const insultSize = defaults.length;
+    const now = (new Date()).getTime();
+    const fullDaysSinceEpoch = Math.floor(now/MILLISECOND_PER_DAY);
 
     if (specials && specials[currentDateStr]) {
       return specials[currentDateStr];
     }
 
-    var insultSize = defaults.length;
-    var now = (new Date()).getTime();
-    var fullDaysSinceEpoch = Math.floor(now/MILLISECOND_PER_DAY);
     return defaults[(fullDaysSinceEpoch % insultSize) -1];
   }
 
