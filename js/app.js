@@ -1,6 +1,5 @@
 (function() {
 	const MILLISECOND_PER_DAY = 8.64e7;
-	const NUM_EXTRA_INSULTS = 5;
 	let insults = {};
 
   $.getJSON('insults.json', function(data) {
@@ -14,15 +13,15 @@
   $('.js-time').text(moment().format('LL'));
 
   $('.js-extra-button').click(function () {
-  	let $extraInsults = '';
+    const numExtraInsults = $('.js-extra-list').children().length;
+  	let $itemList = null;
     let extraInsult = '';
 
-  	for (let i = 0; i < NUM_EXTRA_INSULTS; i++) {
-  		// extraList.push(insults.default[getRandomInt(0, insults.default.length)]);
+  	for (let i = 0; i < numExtraInsults; i++) {
   		extraInsult = insults.default[getRandomInt(0, insults.default.length)];
-  		$extraInsults += `<li class="extra-list__item">${extraInsult}</li>`;
+      $itemList = $('.js-extra-list').children()[i];
+      $($itemList).text(extraInsult);
   	}
-  	$('.js-extra-list').append($extraInsults);
   	$('.js-extra-list').removeClass('hide');
   });
 
@@ -32,7 +31,6 @@
    * else, it returns a insult from default list by current date.
    */
   function getInsult(defaults, specials) {
-
     const currentDateStr = moment().format('DD/MM/YYYY');
     const insultSize = defaults.length;
     const now = (new Date()).getTime();
@@ -45,7 +43,6 @@
     return defaults[(fullDaysSinceEpoch % insultSize) -1];
   }
 
-
   /**
    * Returns a random integer between min (inclusive) and max (inclusive)
    * Using Math.round() will give you a non-uniform distribution!
@@ -53,7 +50,5 @@
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-
 
 })();
